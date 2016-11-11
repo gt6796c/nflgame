@@ -455,7 +455,9 @@ def _search_schedule(year, week=None, home=None, away=None, kind='REG',
                 continue
             if away is not None and a != away:
                 continue
-        if t != kind:
+        if isinstance(kind, str) and t != kind:
+            continue
+        elif t not in kind:
             continue
         if started:
             gametime = nflgame.live._game_datetime(info)
